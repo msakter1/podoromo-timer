@@ -1,0 +1,62 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cozy Pomodoro</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <video autoplay muted loop id="backgroundVideo"></video>
+    
+    <div class="container">
+        <div class="header">
+            <h1>Cozy Study Time 🍅</h1>
+            <button id="videoSelectBtn">🌄 Change Background</button>
+            <button id="fullscreenBtn">🖥 Fullscreen</button>
+        </div>
+
+        <div class="main-content">
+            <div class="timer-section">
+                <div class="cat-animation" id="cat">😻</div>
+                <div class="timer-display" id="timer">25:00</div>
+                <div class="timer-controls">
+                    <select id="workDuration">
+                        <option value="30">30 mins</option>
+                        <option value="45">45 mins</option>
+                        <option value="60">60 mins</option>
+                    </select>
+                    <select id="breakDuration">
+                        <option value="5">5 min break</option>
+                        <option value="10">10 min break</option>
+                        <option value="15">15 min break</option>
+                    </select>
+                    <button id="startTimer">▶ Start</button>
+                    <button id="resetTimer">🔄 Reset</button>
+                </div>
+            </div>
+
+            <div class="todo-section">
+                <h2>Tasks 🎯</h2>
+                <form id="todoForm">
+                    <input type="text" id="taskInput" placeholder="Add new task...">
+                    <button type="submit">➕</button>
+                </form>
+                <ul id="taskList"></ul>
+            </div>
+
+            <div class="music-section">
+                <h2>Music 🎵</h2>
+                <div class="playlist-container" id="playlistContainer"></div>
+            </div>
+        </div>
+    </div>
+
+    <dialog id="videoDialog"></dialog>
+
+    <script src="script.js"></script>
+</body>
+</html>
