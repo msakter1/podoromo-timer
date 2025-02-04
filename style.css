@@ -111,6 +111,8 @@ video {
 
 button {
     background: #ffb6c1;
+    /* width: 100px;
+    height: 40px; */
     border: none;
     padding: 0.5rem 1rem;
     border-radius: 8px;
@@ -194,3 +196,31 @@ button:hover {
 }
 
 
+
+    /* <button id="videoSelectBtn">🌄 Change Background</button>
+    <button id="games">🃏 Games!</button>
+    <button id="fullscreenBtn">🖥 Fullscreen</button>
+    <button id="toggleViewBtn" title="Toggle View">🌄</button> */
+
+#games {
+    width: 100px;
+    height: 40px;
+}
+
+#fullscreenBtn {
+    width: 120px;
+    height: 40px;
+}
+
+#videoSelectBtn {
+    width: 200px;
+    height: 40px;
+}
+
+#taskInput {
+    height: 30px;
+}
+
+#workDuration, #breakDuration {
+    height: 30px;
+}
