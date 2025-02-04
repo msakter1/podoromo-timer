@@ -1,0 +1,65 @@
+/* Game CSS */
+#gamesDialog {
+    border-radius: 15px;
+    border: 3px solid #ffb7c5;
+    background: #fff0f3;
+    font-family: 'Comic Neue', cursive;
+    max-width: 500px;
+}
+
+#gamesDialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.game-option {
+    background: #ffd3dc;
+    border: 2px solid #ff9eb3;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.game-option:hover {
+    background: #ff9eb3;
+    transform: scale(1.05);
+}
+
+.tic-tac-toe {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 20px;
+}
+
+.cell {
+    width: 80px;
+    height: 80px;
+    background: #fff;
+    border: 2px solid #ff9eb3;
+    border-radius: 15px;
+    font-size: 2.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cell:hover {
+    background: #ffe6eb;
+}
+
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.close-game {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #ff6b8b;
+}

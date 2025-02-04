@@ -133,6 +133,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+
+
     // Initial Load
     loadTasks();
     backgroundVideo.src = videoSources[0];
@@ -181,5 +183,107 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    
+    // Games functionality
+    const gamesDialog = document.getElementById('gamesDialog');
+    const gamesButton = document.getElementById('games');
+    const gameContainer = document.getElementById('gameContainer');
+
+    // Open games dialog
+    gamesButton.addEventListener('click', () => {
+        gamesDialog.showModal();
+    });
+
+    // Close dialog
+    document.querySelector('.close-game').addEventListener('click', () => {
+        gamesDialog.close();
+        gameContainer.innerHTML = '';
+    });
+
+    // Game selection
+    document.querySelectorAll('.game-option').forEach(button => {
+        button.addEventListener('click', (e) => {
+            const game = e.target.dataset.game;
+            if (game === 'tictactoe') {
+                createTicTacToe();
+            }
+        });
+    });
+
+    // Tic-Tac-Toe Game
+    function createTicTacToe() {
+        let currentPlayer = '❌';
+        let moves = 0;
+        const cells = Array(9).fill(null);
+        
+        const gameHTML = `
+            <div class="tic-tac-toe-wrapper">
+                <h3>Current Player: ${currentPlayer}</h3>
+                <div class="tic-tac-toe" id="ticTacToeBoard">
+                    ${Array.from({length: 9}, (_, i) => `
+                        <button class="cell" data-index="${i}"></button>
+                    `).join('')}
+                </div>
+                <button id="resetGame">🔄 Reset Game</button>
+            </div>
+        `;
+        
+        gameContainer.innerHTML = gameHTML;
+        
+        const board = document.getElementById('ticTacToeBoard');
+        const status = gameContainer.querySelector('h3');
+        const resetBtn = document.getElementById('resetGame');
+        
+        board.addEventListener('click', (e) => {
+            const cell = e.target;
+            const index = cell.dataset.index;
+            
+            if (cell.textContent || checkWinner()) return;
+            
+            cell.textContent = currentPlayer;
+            moves++;
+            cells[index] = currentPlayer;
+            
+            if (checkWinner()) {
+                status.textContent = `🎉 ${currentPlayer} Wins! 🎉`;
+                return;
+            }
+            
+            if (moves === 9) {
+                status.textContent = "😿 It's a Draw!";
+                return;
+            }
+            
+            currentPlayer = currentPlayer === '❌' ? '⭕' : '❌';
+            status.textContent = `Current Player: ${currentPlayer}`;
+        });
+        
+        resetBtn.addEventListener('click', () => {
+            cells.fill(null);
+            currentPlayer = '❌';
+            moves = 0;
+            status.textContent = `Current Player: ${currentPlayer}`;
+            board.querySelectorAll('.cell').forEach(cell => {
+                cell.textContent = '';
+            });
+        });
+        
+        function checkWinner() {
+            const winPatterns = [
+                [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
+                [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columns
+                [0, 4, 8], [2, 4, 6] // Diagonals
+            ];
+            
+            return winPatterns.some(pattern => {
+                const [a, b, c] = pattern;
+                return cells[a] && cells[a] === cells[b] && cells[a] === cells[c];
+            });
+        }
+    }
+
+
+
+
+
+
 });

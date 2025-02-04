@@ -7,6 +7,7 @@
     <title>Cozy Pomodoro</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="cat.css">
+    <link rel="stylesheet" href="game.css">
     <script src="script.js" defer></script>
 
     <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
@@ -21,6 +22,7 @@
             <h1>Cozy Study Time 🍅</h1>
             <button id="videoSelectBtn">🌄 Change Background</button>
             <button id="fullscreenBtn">🖥 Fullscreen</button>
+            <button id="games">🃏 Games!</button>
             <button id="toggleViewBtn" title="Toggle View">🌄</button>
         </div>
 
@@ -58,6 +60,20 @@
                 <h2>Music 🎵</h2>
                 <div class="playlist-container" id="playlistContainer"></div>
             </div>
+
+
+            <dialog id="gamesDialog">
+                <div class="game-header">
+                    <h2>🎮 Cute Mini Games 🍭</h2>
+                    <button class="close-game">✖️</button>
+                </div>
+                <div class="games-menu">
+                    <button class="game-option" data-game="tictactoe">❌⭕ Tic-Tac-Toe</button>
+                    <button class="game-option" data-game="crossword">🔠 Crossword (Coming Soon!)</button>
+                </div>
+                <div class="game-container" id="gameContainer"></div>
+            </dialog>
+
 
 
         </div>
