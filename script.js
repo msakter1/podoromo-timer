@@ -1,6 +1,5 @@
 // script.js
 document.addEventListener('DOMContentLoaded', () => {
-    // Video Background Management
     const videoSources = [
         'cozy-cafe.mp4',
         'rainy-window.mp4',
@@ -137,6 +136,34 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initial Load
     loadTasks();
     backgroundVideo.src = videoSources[0];
+    
+
+    // Add to script.js
+    let isFullVideoView = false;
+
+    document.getElementById('toggleViewBtn').addEventListener('click', () => {
+        isFullVideoView = !isFullVideoView;
+        document.body.classList.toggle('full-video-view', isFullVideoView);
         
+        if(isFullVideoView) {
+            // Pause any active timers
+            clearInterval(timer);
+            startBtn.disabled = false;
+        }
+    });
+
+    // Modify video selection handler
+    videoDialog.querySelectorAll('.video-option').forEach(btn => {
+        btn.addEventListener('click', () => {
+            backgroundVideo.src = btn.dataset.src;
+            videoDialog.close();
+            
+            // Automatically enter full video view when selecting new background
+            if(!isFullVideoView) {
+                document.body.classList.add('full-video-view');
+                isFullVideoView = true;
+            }
+        });
+    });
 
 });

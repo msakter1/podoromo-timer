@@ -26,7 +26,7 @@ video {
     padding: 2rem;
     margin: 2rem;
     border-radius: 20px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    box-shadow: 0 0 20px rgb(213, 246, 248);
 }
 
 .header {
@@ -117,3 +117,31 @@ button:hover {
 }
 
 /* Add more styles as needed */
+
+#toggleViewBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1001;
+    font-size: 1.5rem;
+    padding: 10px;
+    background: #ffb6c1;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.full-video-view #backgroundVideo {
+    z-index: 1000;
+}
+
+.full-video-view .container {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.full-video-view #toggleViewBtn {
+    background: #fff;
+    transform: rotate(180deg);
+}
