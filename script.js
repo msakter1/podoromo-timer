@@ -4,7 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const videoSources = [
         'cozy-cafe.mp4',
         'rainy-window.mp4',
-        'fireplace.mp4'
+        'fireplace.mp4',
+        'snow.mp4'
     ];
     
     const backgroundVideo = document.getElementById('backgroundVideo');
@@ -32,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const timerDisplay = document.getElementById('timer');
     const startBtn = document.getElementById('startTimer');
     const resetBtn = document.getElementById('resetTimer');
-    const cat = document.getElementById('cat');
+    // const cat = document.getElementById('cat');
 
     function updateTimerDisplay(seconds) {
         const mins = Math.floor(seconds / 60);
@@ -107,6 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+
     // Spotify Playlists
     const playlists = [
         '37i9dQZF1DX4WYpdgoIcn6', // Focus
@@ -135,4 +137,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initial Load
     loadTasks();
     backgroundVideo.src = videoSources[0];
+        
+
 });
