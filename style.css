@@ -146,27 +146,33 @@ button:hover {
     transform: rotate(180deg);
 }
 
-/* video */
-.container h1,
-.music-section h2 {
-    transition: color 0.5s ease, text-shadow 0.5s ease;
-}
-
-.video-background-active .container h1,
-.video-background-active .music-section h2 {
-    color: #ffffff;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
-}
-
-.container h1,
-.music-section h2 {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 5px 10px;
+/* to do items */
+#taskList li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem 0;
+    background: white;
     border-radius: 5px;
+    transition: all 0.3s ease;
 }
 
-.dark-text .container h1,
-.dark-text .music-section h2 {
-    color: #333 !important;
-    text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.5);
+.delete-task {
+    background: none;
+    border: none;
+    color: #ff6b6b;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0 0.5rem;
+    transition: transform 0.2s ease;
+}
+
+.delete-task:hover {
+    transform: scale(1.2);
+    color: #ff4757;
+}
+
+.completed .delete-task {
+    opacity: 0.6;
 }

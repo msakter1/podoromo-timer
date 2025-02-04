@@ -1,10 +1,10 @@
 // script.js
 document.addEventListener('DOMContentLoaded', () => {
     const videoSources = [
-        'cozy-cafe.mp4',
-        'rainy-window.mp4',
-        'fireplace.mp4',
-        'snow.mp4'
+        'videos/cozy-cafe.mp4',
+        'videos/rainy-window.mp4',
+        'videos/fireplace.mp4',
+        'videos/snow.mp4'
     ];
     
     const backgroundVideo = document.getElementById('backgroundVideo');
@@ -110,9 +110,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Spotify Playlists
     const playlists = [
-        '37i9dQZF1DX4WYpdgoIcn6', // Focus
-        '37i9dQZF1DXcBWIGoYBM5M', // Lofi
-        '37i9dQZF1DX3rxVfibe1L0' // Classical
+        '37i9dQZF1DX4WYpdgoIcn6', 
+        '37i9dQZF1DXcBWIGoYBM5M', 
+        '37i9dQZF1DX3rxVfibe1L0' 
     ];
 
     const playlistContainer = document.getElementById('playlistContainer');
@@ -136,58 +136,35 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initial Load
     loadTasks();
     backgroundVideo.src = videoSources[0];
+
     
-
-    // Add to script.js
-    let isFullVideoView = false;
-
-    document.getElementById('toggleViewBtn').addEventListener('click', () => {
-        isFullVideoView = !isFullVideoView;
-        document.body.classList.toggle('full-video-view', isFullVideoView);
-        
-        if(isFullVideoView) {
-            // Pause any active timers
-            clearInterval(timer);
-            startBtn.disabled = false;
+    function loadTasks() {
+        const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+        taskList.innerHTML = tasks.map((task, index) => `
+            <li class="${task.completed ? 'completed' : ''}">
+                ${task.text}
+                <button class="delete-task" data-index="${index}">×</button>
+            </li>
+        `).join('');
+    }
+    
+    // Add task deletion handler
+    taskList.addEventListener('click', (e) => {
+        if(e.target.classList.contains('delete-task')) {
+            const index = e.target.dataset.index;
+            const tasks = JSON.parse(localStorage.getItem('tasks'));
+            tasks.splice(index, 1);
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+            loadTasks();
+            cat.reactToEvent('taskDeleted');
+        }
+        else if(e.target.tagName === 'LI') {
+            const index = [...taskList.children].indexOf(e.target);
+            const tasks = JSON.parse(localStorage.getItem('tasks'));
+            tasks[index].completed = !tasks[index].completed;
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+            loadTasks();
         }
     });
-
-    // Modify video selection handler
-    videoDialog.querySelectorAll('.video-option').forEach(btn => {
-        btn.addEventListener('click', () => {
-            backgroundVideo.src = btn.dataset.src;
-            videoDialog.close();
-            
-            // Automatically enter full video view when selecting new background
-            if(!isFullVideoView) {
-                document.body.classList.add('full-video-view');
-                isFullVideoView = true;
-            }
-        });
-    });
-
+    
 });
-
-// Add this after setting the video source
-backgroundVideo.onloadeddata = () => {
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-    canvas.width = 16;
-    canvas.height = 16;
-    ctx.drawImage(backgroundVideo, 0, 0, 16, 16);
-    const imageData = ctx.getImageData(0, 0, 16, 16).data;
-    
-    // Calculate average brightness
-    let brightness = 0;
-    for(let i = 0; i < imageData.length; i += 4) {
-        brightness += (imageData[i] + imageData[i+1] + imageData[i+2]) / 3;
-    }
-    brightness /= (imageData.length / 4);
-    
-    // Adjust text color based on brightness
-    if(brightness > 128) {
-        document.body.classList.add('dark-text');
-    } else {
-        document.body.classList.remove('dark-text');
-    }
-};
