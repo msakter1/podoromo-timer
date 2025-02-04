@@ -32,7 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const timerDisplay = document.getElementById('timer');
     const startBtn = document.getElementById('startTimer');
     const resetBtn = document.getElementById('resetTimer');
-    // const cat = document.getElementById('cat');
 
     function updateTimerDisplay(seconds) {
         const mins = Math.floor(seconds / 60);
@@ -111,9 +110,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Spotify Playlists
     const playlists = [
         '37i9dQZF1DX4WYpdgoIcn6', 
-        '37i9dQZF1DXcBWIGoYBM5M', 
-        '37i9dQZF1DX3rxVfibe1L0' 
+        // '37i9dQZF1DXcBWIGoYBM5M', 
+        '3WLDIcG4Cx2UOPy0rbFhQn',
+        '2sZYutAwhMODqCaS0mYj4Z'
     ];
+
+    // <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/0QknRAZUpwPtM2dQIzAnAa?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 
     const playlistContainer = document.getElementById('playlistContainer');
     playlistContainer.innerHTML = playlists.map(id => `
