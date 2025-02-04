@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loadTasks();
     backgroundVideo.src = videoSources[0];
 
-    
+
     function loadTasks() {
         const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
         taskList.innerHTML = tasks.map((task, index) => `
@@ -151,12 +151,25 @@ document.addEventListener('DOMContentLoaded', () => {
     // Add task deletion handler
     taskList.addEventListener('click', (e) => {
         if(e.target.classList.contains('delete-task')) {
+            // const index = e.target.dataset.index;
+            // const tasks = JSON.parse(localStorage.getItem('tasks'));
+            // tasks.splice(index, 1);
+            // localStorage.setItem('tasks', JSON.stringify(tasks));
+            // loadTasks();
+            // cat.reactToEvent('taskDeleted');
+
+        const taskItem = e.target.parentElement;
+        taskItem.classList.add('deleting');
+        
+        setTimeout(() => {
             const index = e.target.dataset.index;
             const tasks = JSON.parse(localStorage.getItem('tasks'));
             tasks.splice(index, 1);
             localStorage.setItem('tasks', JSON.stringify(tasks));
             loadTasks();
             cat.reactToEvent('taskDeleted');
+        }, 300);
+
         }
         else if(e.target.tagName === 'LI') {
             const index = [...taskList.children].indexOf(e.target);
@@ -166,5 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
             loadTasks();
         }
     });
+
+
     
 });
