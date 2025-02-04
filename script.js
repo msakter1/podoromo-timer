@@ -1,10 +1,10 @@
 // script.js
 document.addEventListener('DOMContentLoaded', () => {
     const videoSources = [
+        'videos/snow.mp4',
         'videos/cozy-cafe.mp4',
         'videos/rainy-window.mp4',
-        'videos/fireplace.mp4',
-        'videos/snow.mp4'
+        'videos/fireplace.mp4'
     ];
     
     const backgroundVideo = document.getElementById('backgroundVideo');
