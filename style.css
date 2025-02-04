@@ -145,3 +145,28 @@ button:hover {
     background: #fff;
     transform: rotate(180deg);
 }
+
+/* video */
+.container h1,
+.music-section h2 {
+    transition: color 0.5s ease, text-shadow 0.5s ease;
+}
+
+.video-background-active .container h1,
+.video-background-active .music-section h2 {
+    color: #ffffff;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+.container h1,
+.music-section h2 {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.dark-text .container h1,
+.dark-text .music-section h2 {
+    color: #333 !important;
+    text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.5);
+}

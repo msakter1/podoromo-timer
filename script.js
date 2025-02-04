@@ -167,3 +167,27 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
+
+// Add this after setting the video source
+backgroundVideo.onloadeddata = () => {
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = 16;
+    canvas.height = 16;
+    ctx.drawImage(backgroundVideo, 0, 0, 16, 16);
+    const imageData = ctx.getImageData(0, 0, 16, 16).data;
+    
+    // Calculate average brightness
+    let brightness = 0;
+    for(let i = 0; i < imageData.length; i += 4) {
+        brightness += (imageData[i] + imageData[i+1] + imageData[i+2]) / 3;
+    }
+    brightness /= (imageData.length / 4);
+    
+    // Adjust text color based on brightness
+    if(brightness > 128) {
+        document.body.classList.add('dark-text');
+    } else {
+        document.body.classList.remove('dark-text');
+    }
+};
