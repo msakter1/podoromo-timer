@@ -8,7 +8,13 @@ body {
     margin: 0;
     min-height: 100vh;
     position: relative;
-    /* color: #4a4a4a; */
+}
+
+.main-content {
+    color: #4a4a4a; ;
+}
+
+.container h1, .music-section h2 {
     color: white;
 }
 
@@ -177,3 +183,4 @@ button:hover {
 .completed .delete-task {
     opacity: 0.6;
 }
+
