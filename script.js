@@ -4,7 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
         'videos/snow.mp4',
         'videos/cozy-cafe.mp4',
         'videos/rainy-window.mp4',
-        'videos/fireplace.mp4'
+        'videos/fireplace.mp4',
+        'videos/leaf-water.mp4'
     ];
     
     const backgroundVideo = document.getElementById('backgroundVideo');
@@ -46,15 +47,32 @@ document.addEventListener('DOMContentLoaded', () => {
             updateTimerDisplay(timeLeft);
             cat.style.transform = `scale(${1 + Math.sin(Date.now()/500)*0.1})`;
             
-            if(timeLeft <= 0) {
+            // if(timeLeft <= 0) {
+            //     clearInterval(timer);
+            //     isWorking = !isWorking;
+            //     const nextDuration = isWorking 
+            //         ? document.getElementById('workDuration').value 
+            //         : document.getElementById('breakDuration').value;
+            //     alert(isWorking ? 'Break time over! Back to work!' : 'Great job! Time for a break!');
+            //     startTimer(nextDuration);
+            // }
+
+            if (timeLeft <= 0) {
                 clearInterval(timer);
                 isWorking = !isWorking;
+            
+                // Get the correct next duration
                 const nextDuration = isWorking 
-                    ? document.getElementById('workDuration').value 
-                    : document.getElementById('breakDuration').value;
+                    ? parseInt(document.getElementById('workDuration').value, 10) 
+                    : parseInt(document.getElementById('breakDuration').value, 10);
+            
                 alert(isWorking ? 'Break time over! Back to work!' : 'Great job! Time for a break!');
-                startTimer(nextDuration);
+            
+                // Ensure the correct timer starts after the alert
+                setTimeout(() => startTimer(nextDuration), 100);
             }
+
+
         }, 1000);
     }
 
@@ -70,6 +88,8 @@ document.addEventListener('DOMContentLoaded', () => {
         updateTimerDisplay(duration * 60);
         startBtn.disabled = false;
     });
+
+
 
     // Todo List
     const todoForm = document.getElementById('todoForm');
@@ -110,12 +130,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Spotify Playlists
     const playlists = [
         '37i9dQZF1DX4WYpdgoIcn6', 
-        // '37i9dQZF1DXcBWIGoYBM5M', 
         '3WLDIcG4Cx2UOPy0rbFhQn',
         '2sZYutAwhMODqCaS0mYj4Z'
     ];
-
-    // <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/0QknRAZUpwPtM2dQIzAnAa?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 
     const playlistContainer = document.getElementById('playlistContainer');
     playlistContainer.innerHTML = playlists.map(id => `
